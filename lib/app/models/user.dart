@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:search_gitgraphql/app/models/repository.dart';
 
 class User {
@@ -9,6 +8,7 @@ class User {
   String location;
   String email;
   String url;
+  int ?starredRepositoriesCount;
   List<Repository> ?starredRepositories;
 
   User(
@@ -19,24 +19,28 @@ class User {
     this.location,
     this.email,
     this.url,
-    this.starredRepositories
+    this.starredRepositoriesCount,
+    this.starredRepositories,
   );
 
   factory User.toObject(Map<String, dynamic> json) {
     List<Repository> repositories = [];
 
-    json["starredRepositories"].forEach((repositoryJson) {
-      repositories.add(Repository.toObject(repositoryJson));
-    });
+    if(json["starredRepositories"].length > 0) {
+      json["starredRepositories"].forEach((repositoryJson) {
+        repositories.add(Repository.toObject(repositoryJson));
+      });
+    }
 
     return User(
       json['login'],
       json['name'],
-      json['avatar_url'],
+      json['avatarUrl'],
       json['bio'],
       json['location'],
       json['email'],
       json['url'],
+      json['starredRepositories']['totalCount'],
       repositories
     );
   }

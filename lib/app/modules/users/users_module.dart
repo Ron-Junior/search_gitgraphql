@@ -1,4 +1,4 @@
-import 'package:search_gitgraphql/app/modules/users/users_Page.dart';
+import 'package:search_gitgraphql/app/modules/users/users_page.dart';
 import 'package:search_gitgraphql/app/modules/users/users_store.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 

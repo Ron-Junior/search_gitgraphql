@@ -9,39 +9,25 @@ part of 'users_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$UsersStore on _UsersStoreBase, Store {
-  final _$valueAtom = Atom(name: '_UsersStoreBase.value');
+  final _$fetchUsersAsyncAction = AsyncAction('_UsersStoreBase.fetchUsers');
 
   @override
-  int get value {
-    _$valueAtom.reportRead();
-    return super.value;
+  Future<dynamic> fetchUsers(String value) {
+    return _$fetchUsersAsyncAction.run(() => super.fetchUsers(value));
   }
 
-  @override
-  set value(int value) {
-    _$valueAtom.reportWrite(value, super.value, () {
-      super.value = value;
-    });
-  }
-
-  final _$_UsersStoreBaseActionController =
-      ActionController(name: '_UsersStoreBase');
+  final _$fetchMoreUsersAsyncAction =
+      AsyncAction('_UsersStoreBase.fetchMoreUsers');
 
   @override
-  void increment() {
-    final _$actionInfo = _$_UsersStoreBaseActionController.startAction(
-        name: '_UsersStoreBase.increment');
-    try {
-      return super.increment();
-    } finally {
-      _$_UsersStoreBaseActionController.endAction(_$actionInfo);
-    }
+  Future<dynamic> fetchMoreUsers() {
+    return _$fetchMoreUsersAsyncAction.run(() => super.fetchMoreUsers());
   }
 
   @override
   String toString() {
     return '''
-value: ${value}
+
     ''';
   }
 }

@@ -20,17 +20,9 @@ class User {
     this.email,
     this.url,
     this.starredRepositoriesCount,
-    this.starredRepositories,
   );
 
   factory User.toObject(Map<String, dynamic> json) {
-    List<Repository> repositories = [];
-
-    if(json["starredRepositories"].length > 0) {
-      json["starredRepositories"].forEach((repositoryJson) {
-        repositories.add(Repository.toObject(repositoryJson));
-      });
-    }
 
     return User(
       json['login'],
@@ -40,8 +32,7 @@ class User {
       json['location'],
       json['email'],
       json['url'],
-      json['starredRepositories']['totalCount'],
-      repositories
+      json['starredRepositories']?['totalCount']
     );
   }
 }
